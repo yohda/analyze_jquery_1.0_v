@@ -7,66 +7,65 @@
 // 4. 최종 연산으로 result함수 또는 result메소드를 호출해야 값을 반환한다.
 // 5. 스태틱이 아닌 객체일 경우 a, b, result라는 프로퍼티가 있을 경우 그 값들을 통해서 result없이도 반영한다.
 // 6. 어떻한 순서로든 실행이 가능해야 한다.
-// zzzzz
-var Calculate = (function(){
+var Calculate = (function() {
     var Calculate,
         result = 0,
         calculateTemplate;
 
-    Calculate = function(initNumber){
+    Calculate = function(initNumber) {
         result = initNumber;
     };
-    
+
     // 테플릿 메소드 패턴
-    calculateTemplate = function(calc){
+    calculateTemplate = function(calc) {
         var length = this.length;
-        for(var i = 0 ; i < length ; i+=1)
+        for (var i = 0; i < length; i += 1)
             calc(this[i]);
     }
 
-    Calculate.init = function(initNumber){
+    Calculate.init = function(initNumber) {
         result = initNumber;
 
         return this;
     }
-  
+
     // call, apply, bind를 통해서 결국 this도 파라미터 형식으로 보낼 수 있다.
-    Calculate.add = function(){
-        calculateTemplate.call(arguments, function(args){
+    Calculate.add = function() {
+        calculateTemplate.call(arguments, function(args) {
             result += args;
         });
-        
+
         return this;
     }
 
-    Calculate.sub = function(){
-        calculateTemplate.call(arguments, function(args){
+    Calculate.sub = function() {
+        calculateTemplate.call(arguments, function(args) {
             result -= args;
         })
-        
+
         return this;
     }
 
-    Calculate.mup = function(){
-        calculateTemplate.call(arguments, function(args){
+    Calculate.mup = function() {
+        calculateTemplate.call(arguments, function(args) {
             result *= args;
         })
 
         return this;
     }
 
-    Calculate.div = function(a, b){
-        calculateTemplate.call(arguments, function(args){
+    Calculate.div = function(a, b) {
+        calculateTemplate.call(arguments, function(args) {
             result /= args;
         })
 
         return this;
     }
 
-    Calculate.result = function(){
+    Calculate.result = function() {
         return result;
     }
-    
+
     // Calculate.prototype.add = function(){
     //     return Calculate.add.call(this, arguments);
     // }
@@ -74,11 +73,11 @@ var Calculate = (function(){
     Calculate.prototype.sub = Calculate.sub;
     Calculate.prototype.mup = Calculate.mup;
 
-    Calculate.prototype.div = function(){
+    Calculate.prototype.div = function() {
         return Calculate.div.call(this);
     }
 
-    Calculate.prototype.result = function(){
+    Calculate.prototype.result = function() {
         return Calculate.result.call(this);
     }
 

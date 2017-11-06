@@ -8,6 +8,7 @@
 // 5. 스태틱이 아닌 객체일 경우 a, b, result라는 프로퍼티가 있을 경우 그 값들을 통해서 result없이도 반영한다.
 // 6. 어떻한 순서로든 실행이 가능해야 한다.
 
+// Hello Git
 var Calculate = (function(){
     var Calculate,
         result = 0,
